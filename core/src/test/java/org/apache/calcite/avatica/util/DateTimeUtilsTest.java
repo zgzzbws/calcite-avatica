@@ -50,6 +50,7 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
@@ -158,6 +159,12 @@ public class DateTimeUtilsTest {
     checkTimeString("23:59:59.1236", 3, 86400000 - 1000 + 124);
     checkTimeString("23:59:59.123456789012345678901234567890", 3,
         86400000 - 1000 + 123);
+  }
+
+  @Test public void testNullToDate() {
+    assertNull(dateStringToUnixDate(null));
+    assertNull(timeStringToUnixDate(null));
+    assertNull(timestampStringToUnixDate(null));
   }
 
   @Test public void testTimestampExtract() {

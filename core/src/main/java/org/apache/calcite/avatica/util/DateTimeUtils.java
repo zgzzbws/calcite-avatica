@@ -629,7 +629,10 @@ public class DateTimeUtils {
     }
   }
 
-  public static int dateStringToUnixDate(String s) {
+  public static Integer dateStringToUnixDate(String s) {
+    if (s == null) {
+      return null;
+    }
     int hyphen1 = s.indexOf('-');
     int y;
     int m;
@@ -652,11 +655,17 @@ public class DateTimeUtils {
     return ymdToUnixDate(y, m, d);
   }
 
-  public static int timeStringToUnixDate(String v) {
+  public static Integer timeStringToUnixDate(String v) {
+    if (v == null) {
+      return null;
+    }
     return timeStringToUnixDate(v, 0);
   }
 
-  public static int timeStringToUnixDate(String v, int start) {
+  public static Integer timeStringToUnixDate(String v, int start) {
+    if (v == null) {
+      return null;
+    }
     final int colon1 = v.indexOf(':', start);
     int hour;
     int minute;
@@ -716,7 +725,10 @@ public class DateTimeUtils {
     return r;
   }
 
-  public static long timestampStringToUnixDate(String s) {
+  public static Long timestampStringToUnixDate(String s) {
+    if (s == null) {
+      return null;
+    }
     final long d;
     final long t;
     s = s.trim();
