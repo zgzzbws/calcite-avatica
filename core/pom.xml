@@ -20,7 +20,7 @@ limitations under the License.
   <parent>
     <groupId>org.apache.calcite.avatica</groupId>
     <artifactId>avatica-parent</artifactId>
-    <version>1.11.0.x-3.x-r1</version>
+    <version>1.11.0.x-3.x-r2</version>
   </parent>
 
   <artifactId>avatica-core</artifactId>
