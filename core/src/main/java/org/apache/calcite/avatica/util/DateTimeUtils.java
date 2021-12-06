@@ -633,6 +633,14 @@ public class DateTimeUtils {
     if (s == null) {
       return null;
     }
+    if (CalciteAvaticaParamUtil.KYLIN_ALLOW_CALCITE_CUT_OFF_DATE.get() != null
+            && CalciteAvaticaParamUtil.KYLIN_ALLOW_CALCITE_CUT_OFF_DATE.get()) {
+      s = s.trim();
+      int spaceIndex = s.indexOf(' ');
+      if (spaceIndex > 0) {
+        s = s.substring(0, spaceIndex);
+      }
+    }
     int hyphen1 = s.indexOf('-');
     int y;
     int m;

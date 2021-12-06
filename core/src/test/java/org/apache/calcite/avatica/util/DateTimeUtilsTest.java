@@ -16,6 +16,7 @@
  */
 package org.apache.calcite.avatica.util;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.text.SimpleDateFormat;
@@ -148,6 +149,18 @@ public class DateTimeUtilsTest {
   private void checkDateString(String s, int d) {
     assertThat(unixDateToString(d), is(s));
     assertThat(dateStringToUnixDate(s), is(d));
+  }
+
+  @Test public void testDateCutOff() {
+    CalciteAvaticaParamUtil.KYLIN_ALLOW_CALCITE_CUT_OFF_DATE.set(true);
+    assertThat(dateStringToUnixDate("1972-03-01 01:02:03"), is(0 + 365 * 2 + 31 + 29 + (1 - 1)));
+    CalciteAvaticaParamUtil.KYLIN_ALLOW_CALCITE_CUT_OFF_DATE.set(false);
+    try {
+      dateStringToUnixDate("1972-03-01 01:02:03");
+    } catch (Exception e) {
+      Assert.assertTrue(e instanceof NumberFormatException);
+      Assert.assertEquals("For input string: \"01 01:02:03\"", e.getMessage());
+    }
   }
 
   @Test public void testTimeToString() {
